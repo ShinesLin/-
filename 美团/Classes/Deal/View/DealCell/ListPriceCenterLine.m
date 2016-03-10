@@ -21,7 +21,7 @@
     CGFloat y = self.height * 0.5;
     CGFloat w = self.width;
     CGFloat h = 0.5;
-    //kkkkkkk
+   
     UIRectFill(CGRectMake(x, y, w, h));
 }
 

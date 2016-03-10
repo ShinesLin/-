@@ -26,7 +26,7 @@
 #import "AwesomeMenu.h"
 #import "DealViewCell.h"
 #import "NoDataView.h"
-
+#import <MJRefresh.h>
 
 @interface DealViewController ()<AwesomeMenuDelegate>
 
@@ -62,6 +62,8 @@
 @property (nonatomic,strong) NSMutableArray *deals;
 
 @property (nonatomic,weak) NoDataView *dataView;
+/** 保存最后一次的参数*/
+@property (nonatomic,strong) FindDealsParams *lastparams;
 @end
 
 @implementation DealViewController
@@ -97,11 +99,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [self setupLeftNavBarItem];
     
     [self setupRightNavBarItem];
-   //集成刷新控件
+   
     [self setupRefresh];
-    
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -109,9 +111,12 @@ static NSString * const reuseIdentifier = @"Cell";
     [self setupLayout:self.view.width orientation:self.interfaceOrientation];
 }
 
+#pragma mark - 下拉上拉刷新
 - (void)setupRefresh
 {
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewDeals)];
     
+    self.collectionView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDeals)];
 }
 
 #pragma mark - 处理屏幕的旋转
@@ -175,7 +180,7 @@ static NSString * const reuseIdentifier = @"Cell";
     DealRegionController *regionVC = (DealRegionController *)self.regionPopover.contentViewController;
     regionVC.regions = self.selectedCity.regions;
     [self.regionPopover dismissPopoverAnimated:YES];
-    [self loadNewDeals];
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 - (void)sortDidSelected:(NSNotification *)note
@@ -184,7 +189,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.selectedSort = note.userInfo[SelectedSort];
     self.sortMenu.TitleView.text = self.selectedSort.label;
     [self.sortPopover dismissPopoverAnimated:YES];
-    [self loadNewDeals];
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 - (void)categoryDidSelected:(NSNotification *)note
@@ -200,7 +205,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.categoryMenu.TitleView.text = self.selectedSubCategoryName;
     
     [self.categoryPopover dismissPopoverAnimated:YES];
-    [self loadNewDeals];
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 - (void)regionDidSelected:(NSNotification *) note
@@ -213,11 +218,11 @@ static NSString * const reuseIdentifier = @"Cell";
     self.regionMenu.TitleView.text = self.selectedSubRegionName;
     
     [self.regionPopover dismissPopoverAnimated:YES];
-    [self loadNewDeals];
+    [self.collectionView.mj_header beginRefreshing];
 }
 
-#pragma mark - 加载团购数据
-- (void)loadNewDeals
+#pragma mark - 封装团购参数
+- (FindDealsParams *)build
 {
     FindDealsParams *params = [[FindDealsParams alloc]init];
     //城市
@@ -242,7 +247,15 @@ static NSString * const reuseIdentifier = @"Cell";
             params.region = self.selectedRegion.name;
         }
     }
-   
+    params.page = @1;
+    return params;
+}
+
+#pragma mark - 加载最新团购数据
+- (void)loadNewDeals
+{
+    FindDealsParams *params = [self build];
+    
     [DealsTool findDeals:params success:^(FindDealsResult *result) {
         // 清空之前的所有数据
         [self.deals removeAllObjects];
@@ -250,9 +263,32 @@ static NSString * const reuseIdentifier = @"Cell";
         [self.deals addObjectsFromArray:result.deals];
         // 刷新表格
         [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        
     } failure:^(NSError *error) {
-        //[MBProgressHUD showError:@"加载团购失败,请稍后再试"];
+        [MBProgressHUD showError:@"加载团购失败,请稍后再试"];
+        [self.collectionView.mj_header endRefreshing];
     }];
+    //保存参数
+    self.lastparams = params;
+}
+#pragma mark - 下拉加载更多团购数据
+- (void)loadMoreDeals
+{
+    FindDealsParams *params = [self build];
+    params.page = @(self.lastparams.page.intValue + 1);
+    
+    [DealsTool findDeals:params success:^(FindDealsResult *result) {
+        [self.deals removeAllObjects];
+        [self.deals addObjectsFromArray:result.deals];
+        [self.collectionView reloadData];
+        [self.collectionView.mj_footer endRefreshing];
+
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_footer endRefreshing];
+        params.page = @(self.lastparams.page.intValue - 1);
+    }];
+    self.lastparams = params;
 }
 
 #pragma mark - 懒加载UIPopoverController
@@ -473,10 +509,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
 #warning 判断是否有团购数据，设置view可见性
     self.dataView.hidden = self.deals.count > 0;
 #warning Incomplete implementation, return the number of items
     return self.deals.count;
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
