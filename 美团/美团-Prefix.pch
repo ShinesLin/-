@@ -1,0 +1,24 @@
+//
+//  美团-Prefix.pch
+//  美团
+//
+//  Created by apple on 16/3/3.
+//  Copyright © 2016年 neusoft. All rights reserved.
+//
+#import <Availability.h>
+#ifndef ___Prefix_pch
+#define ___Prefix_pch
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIButton+Extension.h"
+#import "MJExtension.h"
+#import "UIView+Extension.h"
+#import "UIView+AutoLayout.h"
+#import "HMMetaDataTool.h"
+#endif
