@@ -77,6 +77,8 @@
 		18AC5E1F1C845F3C00EF0E62 /* ApiTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC5E1E1C845F3C00EF0E62 /* ApiTool.m */; };
 		18B8C5E11C85C4EE004CE72B /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8C5DE1C85C4EE004CE72B /* UIView+AutoLayout.m */; };
 		18B8C5E21C85C4EE004CE72B /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8C5E01C85C4EE004CE72B /* UIView+Extension.m */; };
+		18E7CCDC1C93AFD800891746 /* DealDetalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E7CCDA1C93AFD800891746 /* DealDetalsController.m */; };
+		18E7CCDD1C93AFD800891746 /* DealDetalsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E7CCDB1C93AFD800891746 /* DealDetalsController.xib */; };
 		18F8601B1C8EF2EF0066A72C /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F85FF71C8EF2EF0066A72C /* AwesomeMenu.m */; };
 		18F8601C1C8EF2EF0066A72C /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F85FF91C8EF2EF0066A72C /* AwesomeMenuItem.m */; };
 		18F8601D1C8EF2EF0066A72C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 18F85FFB1C8EF2EF0066A72C /* LICENSE */; };
@@ -245,6 +247,9 @@
 		18B8C5DE1C85C4EE004CE72B /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		18B8C5DF1C85C4EE004CE72B /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		18B8C5E01C85C4EE004CE72B /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		18E7CCD91C93AFD800891746 /* DealDetalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetalsController.h; sourceTree = "<group>"; };
+		18E7CCDA1C93AFD800891746 /* DealDetalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetalsController.m; sourceTree = "<group>"; };
+		18E7CCDB1C93AFD800891746 /* DealDetalsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetalsController.xib; sourceTree = "<group>"; };
 		18F85FF61C8EF2EF0066A72C /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
 		18F85FF71C8EF2EF0066A72C /* AwesomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenu.m; sourceTree = "<group>"; };
 		18F85FF81C8EF2EF0066A72C /* AwesomeMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenuItem.h; sourceTree = "<group>"; };
@@ -384,6 +389,7 @@
 		180162051C844BDF0026C631 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18E7CCD71C93AFB600891746 /* Detals */,
 				186306A61C85B23300C2FCB3 /* Deal */,
 				1801620D1C844BDF0026C631 /* Main */,
 				180162111C844BDF0026C631 /* Other */,
@@ -653,6 +659,24 @@
 			path = MetaData;
 			sourceTree = "<group>";
 		};
+		18E7CCD71C93AFB600891746 /* Detals */ = {
+			isa = PBXGroup;
+			children = (
+				18E7CCD81C93AFB600891746 /* Controller */,
+			);
+			path = Detals;
+			sourceTree = "<group>";
+		};
+		18E7CCD81C93AFB600891746 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18E7CCD91C93AFD800891746 /* DealDetalsController.h */,
+				18E7CCDA1C93AFD800891746 /* DealDetalsController.m */,
+				18E7CCDB1C93AFD800891746 /* DealDetalsController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		18F85FF41C8EF2EF0066A72C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -856,6 +880,7 @@
 				180C56D61C8FA6150093E25F /* MBProgressHUD.bundle in Resources */,
 				180C56EA1C8FB3610093E25F /* DealTopMenu.xib in Resources */,
 				1858E5A21C8C53A800FB98A9 /* CitiesController.xib in Resources */,
+				18E7CCDD1C93AFD800891746 /* DealDetalsController.xib in Resources */,
 				187D19071C86EA3500C917DA /* cities.plist in Resources */,
 				180161C91C8449820026C631 /* Assets.xcassets in Resources */,
 				187D19081C86EA3500C917DA /* cityGroups.plist in Resources */,
@@ -956,6 +981,7 @@
 				180C56D51C8FA6150093E25F /* MBProgressHUD+MJ.m in Sources */,
 				185DF50F1C8FE61500F36D82 /* NSData+ImageContentType.m in Sources */,
 				18AC5E1F1C845F3C00EF0E62 /* ApiTool.m in Sources */,
+				18E7CCDC1C93AFD800891746 /* DealDetalsController.m in Sources */,
 				187D191D1C86EBF100C917DA /* FindDealsResult.m in Sources */,
 				185DF5171C8FE61500F36D82 /* UIButton+WebCache.m in Sources */,
 				187D191B1C86EBF100C917DA /* Deals.m in Sources */,

@@ -27,6 +27,7 @@
 #import "DealViewCell.h"
 #import "NoDataView.h"
 #import <MJRefresh.h>
+#import "DealDetalsController.h"
 
 @interface DealViewController ()<AwesomeMenuDelegate>
 
@@ -64,6 +65,9 @@
 @property (nonatomic,weak) NoDataView *dataView;
 /** 保存最后一次的参数*/
 @property (nonatomic,strong) FindDealsParams *lastparams;
+/** 记录返回团购数据的个数*/
+@property (nonatomic,assign) int resultcount;
+
 @end
 
 @implementation DealViewController
@@ -74,7 +78,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if (_dataView == nil) {
         NoDataView *dataView = [[NoDataView alloc]init];
         dataView.image = [UIImage imageNamed:@"icon_deals_empty"];
-        [self.view addSubview:dataView];
+        [self.view insertSubview:dataView belowSubview:self.collectionView];
         self.dataView = dataView;
     }
     return _dataView;
@@ -91,6 +95,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark 初始化
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.collectionView.alwaysBounceVertical = YES;
     //添加通知
     [self setuoNotification];
     
@@ -101,6 +106,9 @@ static NSString * const reuseIdentifier = @"Cell";
     [self setupRightNavBarItem];
    
     [self setupRefresh];
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
+    
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
@@ -257,6 +265,10 @@ static NSString * const reuseIdentifier = @"Cell";
     FindDealsParams *params = [self build];
     
     [DealsTool findDeals:params success:^(FindDealsResult *result) {
+        //如果请求过期，直接返回
+        if(params != self.lastparams) return;
+        //记录总数
+        self.resultcount = result.total_count;
         // 清空之前的所有数据
         [self.deals removeAllObjects];
         // 添加新的数据
@@ -266,6 +278,9 @@ static NSString * const reuseIdentifier = @"Cell";
         [self.collectionView.mj_header endRefreshing];
         
     } failure:^(NSError *error) {
+        //如果请求过期，直接返回
+        if(params != self.lastparams) return;
+
         [MBProgressHUD showError:@"加载团购失败,请稍后再试"];
         [self.collectionView.mj_header endRefreshing];
     }];
@@ -279,12 +294,18 @@ static NSString * const reuseIdentifier = @"Cell";
     params.page = @(self.lastparams.page.intValue + 1);
     
     [DealsTool findDeals:params success:^(FindDealsResult *result) {
+        //如果请求过期，直接返回
+        if(params != self.lastparams) return;
+        
         [self.deals removeAllObjects];
         [self.deals addObjectsFromArray:result.deals];
         [self.collectionView reloadData];
         [self.collectionView.mj_footer endRefreshing];
 
     } failure:^(NSError *error) {
+        //如果请求过期，直接返回
+        if(params != self.lastparams) return;
+
         [self.collectionView.mj_footer endRefreshing];
         params.page = @(self.lastparams.page.intValue - 1);
     }];
@@ -511,9 +532,14 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
 #warning 判断是否有团购数据，设置view可见性
-    self.dataView.hidden = self.deals.count > 0;
+    self.dataView.hidden = (self.deals.count > 0);
+    //判断尾部控件可见性
+#warning 如果要在数据个数发生的改变时做出响应，那么响应操作可以考虑在数据源方法中实现
+    self.collectionView.mj_footer.hidden = (self.deals.count == self.resultcount);
 #warning Incomplete implementation, return the number of items
     return self.deals.count;
+    
+   
     
 }
 
@@ -525,6 +551,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark <UICollectionViewDelegate>
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DealDetalsController *vc = [[DealDetalsController alloc]init];
+    vc.deal = self.deals[indexPath.item];
+    [self presentViewController:vc animated:YES completion:nil ];
+}
 
 @end
