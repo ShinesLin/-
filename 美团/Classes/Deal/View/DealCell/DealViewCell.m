@@ -23,11 +23,12 @@
     self.describLabel.text = deal.desc;
     self.describLabel.numberOfLines = 0;
     /**显示现价*/
-    self.currentPriceLabel.text = [NSString stringWithFormat:@"￥%.0f", deal.current_price];
+   
+    self.currentPriceLabel.text = [NSString stringWithFormat:@"￥%@", deal.current_price];
     self.currentPriceConstrain.constant = [self.currentPriceLabel.text sizeWithAttributes:@{NSFontAttributeName : self.currentPriceLabel.font}].width + 1;
     
     /**显示原价*/
-    self.listPriceLabel.text = [NSString stringWithFormat:@"￥%.0f",deal.list_price];
+    self.listPriceLabel.text = [NSString stringWithFormat:@"￥%@",deal.list_price];
     self.listPriceConstrain.constant = [self.listPriceLabel.text sizeWithAttributes:@{NSFontAttributeName : self.listPriceLabel.font}].width + 1;
     /**显示销售量*/
     self.purseCountLabel.text = [NSString stringWithFormat:@"已售出%d",deal.purchase_count];

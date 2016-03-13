@@ -27,6 +27,7 @@
 		181B372E1C8D3CFC00BBF3BD /* SearchCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B372D1C8D3CFC00BBF3BD /* SearchCityController.m */; };
 		18339D611C90FC83000F43FC /* ListPriceCenterLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339D601C90FC83000F43FC /* ListPriceCenterLine.m */; };
 		18339D651C91074F000F43FC /* NoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339D641C91074F000F43FC /* NoDataView.m */; };
+		183DB1A91C9504AA00ABBDF3 /* Restrictions.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DB1A81C9504AA00ABBDF3 /* Restrictions.m */; };
 		184C0AEE1C9112150037D6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C0AED1C9112150037D6F6 /* main.m */; };
 		184E618E1C8534C200EA4765 /* DealsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 184E618D1C8534C200EA4765 /* DealsTool.m */; };
 		1850E3141C87FFC800501996 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1850E3131C87FFC800501996 /* UIButton+Extension.m */; };
@@ -154,6 +155,8 @@
 		18339D601C90FC83000F43FC /* ListPriceCenterLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPriceCenterLine.m; sourceTree = "<group>"; };
 		18339D631C91074F000F43FC /* NoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataView.h; sourceTree = "<group>"; };
 		18339D641C91074F000F43FC /* NoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataView.m; sourceTree = "<group>"; };
+		183DB1A71C9504AA00ABBDF3 /* Restrictions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restrictions.h; sourceTree = "<group>"; };
+		183DB1A81C9504AA00ABBDF3 /* Restrictions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restrictions.m; sourceTree = "<group>"; };
 		184C0AED1C9112150037D6F6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Classes/main.m; sourceTree = "<group>"; };
 		184E61591C852FAE00EA4765 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		184E618C1C8534C200EA4765 /* DealsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsTool.h; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 				187D190C1C86EBF100C917DA /* Business.m */,
 				187D190D1C86EBF100C917DA /* Deals.h */,
 				187D190E1C86EBF100C917DA /* Deals.m */,
+				183DB1A71C9504AA00ABBDF3 /* Restrictions.h */,
+				183DB1A81C9504AA00ABBDF3 /* Restrictions.m */,
 			);
 			path = Deals;
 			sourceTree = "<group>";
@@ -857,6 +862,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 180161B01C8449810026C631;
 			productRefGroup = 180161BA1C8449820026C631 /* Products */;
@@ -972,6 +978,7 @@
 				18F860241C8EF2EF0066A72C /* NSObject+MJClass.m in Sources */,
 				18F860231C8EF2EF0066A72C /* MJPropertyType.m in Sources */,
 				187D19281C86EE1F00C917DA /* Region.m in Sources */,
+				183DB1A91C9504AA00ABBDF3 /* Restrictions.m in Sources */,
 				18F860281C8EF2EF0066A72C /* NSString+MJExtension.m in Sources */,
 				187D19251C86ED3E00C917DA /* Cities.m in Sources */,
 				18F860201C8EF2EF0066A72C /* MJFoundation.m in Sources */,
@@ -1177,8 +1184,24 @@
 			baseConfigurationReference = 8A52DAB71F544F33C8F15D11 /* Pods-美团.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				INFOPLIST_FILE = "美团/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/UMSocial_Sdk_4.1",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/UMSocial_Sdk_Extra_Frameworks/Sina",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_5.0",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_5.0",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.neusoft.--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1189,9 +1212,25 @@
 			baseConfigurationReference = 2996D4333FDF3DDA07BCC8D5 /* Pods-美团.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 				INFOPLIST_FILE = "美团/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/UMSocial_Sdk_4.1",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/UMSocial_Sdk_Extra_Frameworks/Sina",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_5.0",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/Pods/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_5.0",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
+					"$(PROJECT_DIR)/美团/Classes/Main/Lib/umeng_ios_social_sdk_5.0_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.neusoft.--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

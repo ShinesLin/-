@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class Restrictions;
 @interface Deals : NSObject
 /** 团购单ID */
 @property (copy, nonatomic) NSString *deal_id;
@@ -20,9 +20,10 @@
 @property (copy, nonatomic) NSString *city;
 
 /** 团购包含商品原价值 */
-@property (assign, nonatomic) float list_price;
+@property (strong, nonatomic) NSNumber  *list_price;
+#warning  如果需要保留服务器返回的小数位数，用NSNumber
 /** 团购价格 */
-@property (assign, nonatomic) float current_price;
+@property (strong, nonatomic) NSNumber *current_price;
 
 /**  团购适用商户所在行政区 NSString */
 @property (strong, nonatomic) NSArray *regions;
@@ -57,5 +58,7 @@
 @property (copy, nonatomic) NSString *details;
 /** 重要通知(一般为团购信息的临时变更) */
 @property (copy, nonatomic) NSString *notice;
+/** 限制条件*/
+@property (nonatomic,strong)  Restrictions *restrction;
 
 @end
