@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
-@class Cities;
+@class Cities,Region,Categories,Sorts;
 @interface MetaDealTool : NSObject
 
 SingletonH(MetaDealTool)
@@ -29,4 +29,18 @@ SingletonH(MetaDealTool)
  */
 @property (strong, nonatomic, readonly) NSArray *sorts;
 - (Cities *)cityWithName:(NSString *)name;
+
+/** 把选中的城市存储到沙盒中，在最近列表显示*/
+- (void)saveSelctedCity:(NSString *)name;
+/** 上次存了哪些城市*/
+- (Cities *)selectCity;
+
+/** 把用户选择的排序存入沙盒中*/
+- (void)saveSelctedSort:(Sorts *)sort;
+- (Sorts *)selctedSort;
+
+/** 把用户选择的分类存入沙盒中*/
+- (void)saveSelctedCategory:(Categories *)cateGory;
+
+- (Categories *)selctedCategory;
 @end

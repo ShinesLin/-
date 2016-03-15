@@ -15,6 +15,7 @@
 #import "Restrictions.h"
 #import "UIButton+Extension.h"
 #import "UIImageView+WebCache.h"
+#import "DealLocalTool.h"
 
 
 #define UMAppKey @"53fb4899fd98c5a4db00a8a0"
@@ -35,6 +36,8 @@
     [self setupLeftContent];
     //显示右边内容
     [self setupRightContent];
+    //保存浏览数据到沙盒中
+    [[DealLocalTool sharedDealLocalTool]saveDealHistory:self.deal];
 }
 
 //规定显示横屏

@@ -7,6 +7,7 @@
 //
 
 #import "Region.h"
+#import "MJExtension.h"
 
 @implementation Region
 
@@ -20,5 +21,5 @@
 {
     return _subregions;
 }
-
+MJCodingImplementation
 @end

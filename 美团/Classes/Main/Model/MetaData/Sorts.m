@@ -7,7 +7,7 @@
 //
 
 #import "Sorts.h"
-
+#import "MJExtension.h"
 @implementation Sorts
-
+MJCodingImplementation
 @end

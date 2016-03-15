@@ -7,6 +7,7 @@
 //
 
 #import "Categories.h"
+#import "MJExtension.h"
 
 @implementation Categories
 - (NSString *)title
@@ -28,5 +29,6 @@
 {
     return _small_highlighted_icon;
 }
-
+//所有成员属性存入沙盒
+MJCodingImplementation
 @end

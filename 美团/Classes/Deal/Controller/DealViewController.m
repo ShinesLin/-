@@ -28,6 +28,8 @@
 #import "NoDataView.h"
 #import <MJRefresh.h>
 #import "DealDetalsController.h"
+#import "MetaDealTool.h"
+#import "DealHisttoryController.h"
 
 @interface DealViewController ()<AwesomeMenuDelegate>
 
@@ -96,6 +98,9 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.alwaysBounceVertical = YES;
+    self.selectedCity = [MetaDealTool sharedMetaDealTool].selectCity;
+    self.selectedSort = [MetaDealTool sharedMetaDealTool].selctedSort;
+    self.selectedCategory = [MetaDealTool sharedMetaDealTool].selctedCategory;
     //添加通知
     [self setuoNotification];
     
@@ -123,7 +128,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)setupRefresh
 {
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewDeals)];
-    
+    [self.collectionView.mj_header beginRefreshing];
     self.collectionView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDeals)];
 }
 
@@ -189,6 +194,8 @@ static NSString * const reuseIdentifier = @"Cell";
     regionVC.regions = self.selectedCity.regions;
     [self.regionPopover dismissPopoverAnimated:YES];
     [self.collectionView.mj_header beginRefreshing];
+    //把选中的城市存储到沙盒中，在最近列表显示
+    [[MetaDealTool sharedMetaDealTool]saveSelctedCity:self.selectedCity.name];
 }
 
 - (void)sortDidSelected:(NSNotification *)note
@@ -198,6 +205,8 @@ static NSString * const reuseIdentifier = @"Cell";
     self.sortMenu.TitleView.text = self.selectedSort.label;
     [self.sortPopover dismissPopoverAnimated:YES];
     [self.collectionView.mj_header beginRefreshing];
+    //把选中的排序存储到沙盒中，在最近列表显示
+    [[MetaDealTool sharedMetaDealTool]saveSelctedSort:self.selectedSort];
 }
 
 - (void)categoryDidSelected:(NSNotification *)note
@@ -214,6 +223,8 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [self.categoryPopover dismissPopoverAnimated:YES];
     [self.collectionView.mj_header beginRefreshing];
+    //把选中的分类存储到沙盒中，在最近列表显示
+    [[MetaDealTool sharedMetaDealTool]saveSelctedCategory:self.selectedCategory];
 }
 
 - (void)regionDidSelected:(NSNotification *) note
@@ -326,7 +337,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     if (_regionPopover == nil) {
         DealRegionController *rc = [[DealRegionController alloc]init];
-        
+        rc.regions = self.selectedCity.regions;
         _regionPopover = [[UIPopoverController alloc]initWithContentViewController:rc];
     }
    
@@ -350,12 +361,15 @@ static NSString * const reuseIdentifier = @"Cell";
     
     DealTopMenu *categoryMenu = [DealTopMenu menu];
     [categoryMenu addTarget:self action:@selector(categoryMenuClick)];
+    categoryMenu.TopTitleView.text = self.selectedCategory.name;
     UIBarButtonItem *catagories = [[UIBarButtonItem alloc]initWithCustomView:categoryMenu];
     self.categoryMenu = categoryMenu;
     
     DealTopMenu *regionMenu = [DealTopMenu menu];
     regionMenu.ImageButton.image = @"icon_district";
     regionMenu.ImageButton.highlightedImage = @"icon_district_highlighted";
+    regionMenu.TopTitleView.text = [NSString stringWithFormat:@"%@ - 全部",self.selectedCity.name];
+    
     [regionMenu addTarget:self action:@selector(RegionMenuClick)];
     UIBarButtonItem *region = [[UIBarButtonItem alloc]initWithCustomView:regionMenu];
     self.regionMenu = regionMenu;
@@ -364,6 +378,7 @@ static NSString * const reuseIdentifier = @"Cell";
     sortMenu.ImageButton.image = @"icon_sort";
     sortMenu.ImageButton.highlightedImage = @"icon_sort_highlighted";
     sortMenu.TopTitleView.text = @"排序";
+    sortMenu.TitleView.text = self.selectedSort.label;
     [sortMenu addTarget:self action:@selector(SortMenuClick)];
     UIBarButtonItem *sort = [[UIBarButtonItem alloc]initWithCustomView:sortMenu];
     self.sortMenu = sortMenu;
@@ -485,6 +500,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSLog(@"didSelectIndex-%d", idx);
     [self awesomeMenuWillAnimateClose:menu];
+    if (idx == 2) {
+        DealHisttoryController *historyVC = [[DealHisttoryController alloc]init];
+        [self presentViewController:historyVC animated:YES completion:nil];
+    }
 }
 
 - (void)awesomeMenuWillAnimateOpen:(AwesomeMenu *)menu
@@ -530,7 +549,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
 #warning 判断是否有团购数据，设置view可见性
     self.dataView.hidden = (self.deals.count > 0);
     //判断尾部控件可见性
@@ -538,9 +556,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.mj_footer.hidden = (self.deals.count == self.resultcount);
 #warning Incomplete implementation, return the number of items
     return self.deals.count;
-    
-   
-    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
