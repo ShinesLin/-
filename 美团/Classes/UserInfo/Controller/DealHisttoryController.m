@@ -8,6 +8,7 @@
 
 #import "DealHisttoryController.h"
 #import "DealLocalTool.h"
+#import "UIBarButtonItem+Extension.h"
 
 @interface DealHisttoryController ()
 
@@ -15,29 +16,33 @@
 
 @implementation DealHisttoryController
 
-static NSString * const reuseIdentifier = @"Cell";
-
-- (id)init
-{
-    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc]init];
-    
-    return [super initWithCollectionViewLayout:flow];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    
+    self.title = @"最近浏览";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_back" highLightImage:@"icon_back_highlighted" target:self action:@selector(back)];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     NSArray *historyDeal = [DealLocalTool sharedDealLocalTool].dealHistory;
-    NSLog(@"%d",historyDeal.count);
+    [self.deals addObjectsFromArray:historyDeal];
+    [self.collectionView reloadData];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)back
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (NSString *)iconName
+{
+    return @"icon_latestBrowse_empty";
+}
 /*
 #pragma mark - Navigation
 
@@ -50,24 +55,24 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
-    return cell;
-}
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//#warning Incomplete implementation, return the number of sections
+//    return 0;
+//}
+//
+//
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//#warning Incomplete implementation, return the number of items
+//    return 0;
+//}
+//
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+//    
+//    // Configure the cell
+//    
+//    return cell;
+//}
 
 #pragma mark <UICollectionViewDelegate>
 

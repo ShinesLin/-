@@ -24,13 +24,11 @@
 #import "MJExtension.h"
 #import "MBProgressHUD+MJ.h"
 #import "AwesomeMenu.h"
-#import "DealViewCell.h"
-#import "NoDataView.h"
 #import <MJRefresh.h>
-#import "DealDetalsController.h"
 #import "MetaDealTool.h"
 #import "DealHisttoryController.h"
-
+#import "DealCollectController.h"
+#import "NavigationController.h"
 @interface DealViewController ()<AwesomeMenuDelegate>
 
 /** 点击顶部菜单后弹出的Popover */
@@ -61,10 +59,7 @@
 @property (strong, nonatomic) Categories *selectedCategory;
 /** 当前选中的子分类名称 */
 @property (copy, nonatomic) NSString *selectedSubCategoryName;
-/** 团购模型数据*/
-@property (nonatomic,strong) NSMutableArray *deals;
 
-@property (nonatomic,weak) NoDataView *dataView;
 /** 保存最后一次的参数*/
 @property (nonatomic,strong) FindDealsParams *lastparams;
 /** 记录返回团购数据的个数*/
@@ -75,24 +70,6 @@
 @implementation DealViewController
 
 static NSString * const reuseIdentifier = @"Cell";
-- (NoDataView *)dataView
-{
-    if (_dataView == nil) {
-        NoDataView *dataView = [[NoDataView alloc]init];
-        dataView.image = [UIImage imageNamed:@"icon_deals_empty"];
-        [self.view insertSubview:dataView belowSubview:self.collectionView];
-        self.dataView = dataView;
-    }
-    return _dataView;
-}
-
-- (NSMutableArray *)deals
-{
-    if (!_deals) {
-        _deals = [NSMutableArray array];
-    }
-    return _deals;
-}
 
 #pragma mark 初始化
 - (void)viewDidLoad {
@@ -111,17 +88,13 @@ static NSString * const reuseIdentifier = @"Cell";
     [self setupRightNavBarItem];
    
     [self setupRefresh];
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (NSString *)iconName
 {
-    [super viewDidAppear:animated];
-    
-    [self setupLayout:self.view.width orientation:self.interfaceOrientation];
+    return @"icon_cinemas_empty";
 }
 
 #pragma mark - 下拉上拉刷新
@@ -132,38 +105,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDeals)];
 }
 
-#pragma mark - 处理屏幕的旋转
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-#warning 这里要注意：由于是即将旋转，最后的宽度就是现在的高度
-    // 总宽度
-    CGFloat totalWidth = self.view.height;
-    [self setupLayout:totalWidth orientation:toInterfaceOrientation];
-}
-
-/**
- *  调整布局
- *
- *  @param totalWidth 总宽度
- *  @param orientation 显示的方向
- */
-- (void)setupLayout:(CGFloat)totalWidth orientation:(UIInterfaceOrientation)orientation
-{
-    //    self.collectionViewLayout == self.collectionView.collectionViewLayout;
-    // 总列数
-    int columns = UIInterfaceOrientationIsPortrait(orientation) ? 2 : 3;
-    
-    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
-    // 每一行的最小间距
-    CGFloat lineSpacing = 25;
-    // 每一列的最小间距
-    CGFloat interitemSpacing = (totalWidth - columns * layout.itemSize.width) / (columns + 1);
-    
-    layout.minimumInteritemSpacing = interitemSpacing;
-    layout.minimumLineSpacing = lineSpacing;
-    // 设置cell与CollectionView边缘的间距
-    layout.sectionInset = UIEdgeInsetsMake(lineSpacing, interitemSpacing, lineSpacing, interitemSpacing);
-}
 
 #pragma mark - 监听通知
 - (void)setuoNotification
@@ -500,9 +441,15 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSLog(@"didSelectIndex-%d", idx);
     [self awesomeMenuWillAnimateClose:menu];
-    if (idx == 2) {
+    if (idx == 1) {
+        DealCollectController *collectVC = [[DealCollectController alloc]init];
+        NavigationController *nav = [[NavigationController alloc]initWithRootViewController:collectVC];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    else if (idx == 2) {
         DealHisttoryController *historyVC = [[DealHisttoryController alloc]init];
-        [self presentViewController:historyVC animated:YES completion:nil];
+        NavigationController *nav = [[NavigationController alloc]initWithRootViewController:historyVC];
+        [self presentViewController:nav animated:YES completion:nil];
     }
 }
 
@@ -523,6 +470,13 @@ static NSString * const reuseIdentifier = @"Cell";
         menu.alpha = 0.3;
     }];
     
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+#warning 如果要在数据个数发生的改变时做出响应，那么响应操作可以考虑在数据源方法中实现
+    self.collectionView.mj_footer.hidden = (self.deals.count == self.resultcount);
+#warning Incomplete implementation, return the number of items
+    return [super collectionView:collectionView numberOfItemsInSection:section];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -548,29 +502,5 @@ static NSString * const reuseIdentifier = @"Cell";
 //}
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning 判断是否有团购数据，设置view可见性
-    self.dataView.hidden = (self.deals.count > 0);
-    //判断尾部控件可见性
-#warning 如果要在数据个数发生的改变时做出响应，那么响应操作可以考虑在数据源方法中实现
-    self.collectionView.mj_footer.hidden = (self.deals.count == self.resultcount);
-#warning Incomplete implementation, return the number of items
-    return self.deals.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    DealViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"deal" forIndexPath:indexPath];
-    cell.deal = self.deals[indexPath.item];
-    return cell;
-}
-
-#pragma mark <UICollectionViewDelegate>
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    DealDetalsController *vc = [[DealDetalsController alloc]init];
-    vc.deal = self.deals[indexPath.item];
-    [self presentViewController:vc animated:YES completion:nil ];
-}
 
 @end

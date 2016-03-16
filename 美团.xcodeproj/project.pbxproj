@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		180161C71C8449820026C631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180161C51C8449820026C631 /* Main.storyboard */; };
 		180161C91C8449820026C631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 180161C81C8449820026C631 /* Assets.xcassets */; };
 		180161CC1C8449820026C631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180161CA1C8449820026C631 /* LaunchScreen.storyboard */; };
 		180161D71C8449820026C631 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180161D61C8449820026C631 /* __Tests.m */; };
@@ -23,9 +22,11 @@
 		180C56E81C8FB3610093E25F /* DropMenuSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56E01C8FB3610093E25F /* DropMenuSubCell.m */; };
 		180C56E91C8FB3610093E25F /* DealTopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56E31C8FB3610093E25F /* DealTopMenu.m */; };
 		180C56EA1C8FB3610093E25F /* DealTopMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180C56E41C8FB3610093E25F /* DealTopMenu.xib */; };
-		180C56ED1C8FB3950093E25F /* DealViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56EC1C8FB3950093E25F /* DealViewCell.m */; };
 		180DE28B1C98145A00294E23 /* DealLocalTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 180DE28A1C98145A00294E23 /* DealLocalTool.m */; };
 		180DE28E1C9819E900294E23 /* DealHisttoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180DE28D1C9819E900294E23 /* DealHisttoryController.m */; };
+		1818CA771C982A0000A11CEE /* DealViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818CA761C982A0000A11CEE /* DealViewCell.m */; };
+		1818CA791C982A3000A11CEE /* DealViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1818CA781C982A3000A11CEE /* DealViewCell.xib */; };
+		1818CA7C1C982EB100A11CEE /* DealListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818CA7B1C982EB100A11CEE /* DealListViewController.m */; };
 		181B372E1C8D3CFC00BBF3BD /* SearchCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B372D1C8D3CFC00BBF3BD /* SearchCityController.m */; };
 		18339D611C90FC83000F43FC /* ListPriceCenterLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339D601C90FC83000F43FC /* ListPriceCenterLine.m */; };
 		18339D651C91074F000F43FC /* NoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18339D641C91074F000F43FC /* NoDataView.m */; };
@@ -77,6 +78,7 @@
 		187D19391C87005B00C917DA /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 187D19381C87005B00C917DA /* UIBarButtonItem+Extension.m */; };
 		189536CE1C89603D00A669C9 /* DealRegionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189536CD1C89603D00A669C9 /* DealRegionController.xib */; };
 		18996B021C8BC22F00525925 /* CitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18996B001C8BC22F00525925 /* CitiesController.m */; };
+		18A26F831C98F0540067CCD7 /* DealCollectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A26F821C98F0540067CCD7 /* DealCollectController.m */; };
 		18AC5E1F1C845F3C00EF0E62 /* ApiTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC5E1E1C845F3C00EF0E62 /* ApiTool.m */; };
 		18B8C5E11C85C4EE004CE72B /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8C5DE1C85C4EE004CE72B /* UIView+AutoLayout.m */; };
 		18B8C5E21C85C4EE004CE72B /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8C5E01C85C4EE004CE72B /* UIView+Extension.m */; };
@@ -121,7 +123,6 @@
 
 /* Begin PBXFileReference section */
 		180161B91C8449820026C631 /* 美团.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "美团.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		180161C61C8449820026C631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		180161C81C8449820026C631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		180161CB1C8449820026C631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		180161CD1C8449820026C631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,12 +150,15 @@
 		180C56E21C8FB3610093E25F /* DealTopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealTopMenu.h; sourceTree = "<group>"; };
 		180C56E31C8FB3610093E25F /* DealTopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealTopMenu.m; sourceTree = "<group>"; };
 		180C56E41C8FB3610093E25F /* DealTopMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealTopMenu.xib; sourceTree = "<group>"; };
-		180C56EB1C8FB3950093E25F /* DealViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealViewCell.h; sourceTree = "<group>"; };
-		180C56EC1C8FB3950093E25F /* DealViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealViewCell.m; sourceTree = "<group>"; };
 		180DE2891C98145A00294E23 /* DealLocalTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealLocalTool.h; sourceTree = "<group>"; };
 		180DE28A1C98145A00294E23 /* DealLocalTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealLocalTool.m; sourceTree = "<group>"; };
 		180DE28C1C9819E900294E23 /* DealHisttoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealHisttoryController.h; sourceTree = "<group>"; };
 		180DE28D1C9819E900294E23 /* DealHisttoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealHisttoryController.m; sourceTree = "<group>"; };
+		1818CA751C982A0000A11CEE /* DealViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealViewCell.h; sourceTree = "<group>"; };
+		1818CA761C982A0000A11CEE /* DealViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealViewCell.m; sourceTree = "<group>"; };
+		1818CA781C982A3000A11CEE /* DealViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealViewCell.xib; sourceTree = "<group>"; };
+		1818CA7A1C982EB100A11CEE /* DealListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealListViewController.h; sourceTree = "<group>"; };
+		1818CA7B1C982EB100A11CEE /* DealListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealListViewController.m; sourceTree = "<group>"; };
 		181B372C1C8D3CFC00BBF3BD /* SearchCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCityController.h; sourceTree = "<group>"; };
 		181B372D1C8D3CFC00BBF3BD /* SearchCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCityController.m; sourceTree = "<group>"; };
 		18339D5F1C90FC83000F43FC /* ListPriceCenterLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPriceCenterLine.h; sourceTree = "<group>"; };
@@ -248,8 +252,9 @@
 		189536CD1C89603D00A669C9 /* DealRegionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealRegionController.xib; sourceTree = "<group>"; };
 		18996AFF1C8BC22F00525925 /* CitiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesController.h; sourceTree = "<group>"; };
 		18996B001C8BC22F00525925 /* CitiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesController.m; sourceTree = "<group>"; };
-		18996B061C8BE3E800525925 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		18996B071C8BE3E800525925 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		18A26F811C98F0540067CCD7 /* DealCollectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealCollectController.h; sourceTree = "<group>"; };
+		18A26F821C98F0540067CCD7 /* DealCollectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealCollectController.m; sourceTree = "<group>"; };
 		18AC5E1D1C845F3C00EF0E62 /* ApiTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiTool.h; sourceTree = "<group>"; };
 		18AC5E1E1C845F3C00EF0E62 /* ApiTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiTool.m; sourceTree = "<group>"; };
 		18B8C5DD1C85C4EE004CE72B /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
@@ -365,7 +370,6 @@
 				187D19051C86EA3500C917DA /* sorts.plist */,
 				1801620E1C844BDF0026C631 /* AppDelegate.h */,
 				1801620F1C844BDF0026C631 /* AppDelegate.m */,
-				180161C51C8449820026C631 /* Main.storyboard */,
 				180161C81C8449820026C631 /* Assets.xcassets */,
 				1860F0591C859B4200F17A60 /* Launch.png */,
 				180161CA1C8449820026C631 /* LaunchScreen.storyboard */,
@@ -471,8 +475,6 @@
 		180C56D81C8FB3610093E25F /* DealCell */ = {
 			isa = PBXGroup;
 			children = (
-				180C56EB1C8FB3950093E25F /* DealViewCell.h */,
-				180C56EC1C8FB3950093E25F /* DealViewCell.m */,
 				18339D5F1C90FC83000F43FC /* ListPriceCenterLine.h */,
 				18339D601C90FC83000F43FC /* ListPriceCenterLine.m */,
 			);
@@ -517,6 +519,8 @@
 			children = (
 				180DE28C1C9819E900294E23 /* DealHisttoryController.h */,
 				180DE28D1C9819E900294E23 /* DealHisttoryController.m */,
+				18A26F811C98F0540067CCD7 /* DealCollectController.h */,
+				18A26F821C98F0540067CCD7 /* DealCollectController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -545,6 +549,9 @@
 			children = (
 				18339D631C91074F000F43FC /* NoDataView.h */,
 				18339D641C91074F000F43FC /* NoDataView.m */,
+				1818CA751C982A0000A11CEE /* DealViewCell.h */,
+				1818CA761C982A0000A11CEE /* DealViewCell.m */,
+				1818CA781C982A3000A11CEE /* DealViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -611,6 +618,8 @@
 			children = (
 				186306A21C85B02600C2FCB3 /* NavigationController.h */,
 				186306A31C85B02600C2FCB3 /* NavigationController.m */,
+				1818CA7A1C982EB100A11CEE /* DealListViewController.h */,
+				1818CA7B1C982EB100A11CEE /* DealListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -915,6 +924,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1818CA791C982A3000A11CEE /* DealViewCell.xib in Resources */,
 				1850E3261C880E6F00501996 /* DealSortController.xib in Resources */,
 				180161CC1C8449820026C631 /* LaunchScreen.storyboard in Resources */,
 				180C56D61C8FA6150093E25F /* MBProgressHUD.bundle in Resources */,
@@ -930,7 +940,6 @@
 				189536CE1C89603D00A669C9 /* DealRegionController.xib in Resources */,
 				187D19091C86EA3500C917DA /* sorts.plist in Resources */,
 				180C56E61C8FB3610093E25F /* DealDropDownMenu.xib in Resources */,
-				180161C71C8449820026C631 /* Main.storyboard in Resources */,
 				1860F05A1C859B4200F17A60 /* Launch.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1005,6 +1014,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F860211C8EF2EF0066A72C /* MJProperty.m in Sources */,
+				1818CA7C1C982EB100A11CEE /* DealListViewController.m in Sources */,
 				18B8C5E21C85C4EE004CE72B /* UIView+Extension.m in Sources */,
 				185DF51A1C8FE61500F36D82 /* UIImageView+HighlightedWebCache.m in Sources */,
 				180DE28E1C9819E900294E23 /* DealHisttoryController.m in Sources */,
@@ -1021,6 +1031,7 @@
 				180C56E91C8FB3610093E25F /* DealTopMenu.m in Sources */,
 				18996B021C8BC22F00525925 /* CitiesController.m in Sources */,
 				180C56D51C8FA6150093E25F /* MBProgressHUD+MJ.m in Sources */,
+				18A26F831C98F0540067CCD7 /* DealCollectController.m in Sources */,
 				185DF50F1C8FE61500F36D82 /* NSData+ImageContentType.m in Sources */,
 				18AC5E1F1C845F3C00EF0E62 /* ApiTool.m in Sources */,
 				18E7CCDC1C93AFD800891746 /* DealDetalsController.m in Sources */,
@@ -1037,7 +1048,6 @@
 				185DF5111C8FE61500F36D82 /* SDWebImageCompat.m in Sources */,
 				18F8601F1C8EF2EF0066A72C /* MJExtensionConst.m in Sources */,
 				185DF51B1C8FE61500F36D82 /* UIImageView+WebCache.m in Sources */,
-				180C56ED1C8FB3950093E25F /* DealViewCell.m in Sources */,
 				187D191C1C86EBF100C917DA /* FindDealsParams.m in Sources */,
 				187D19311C86EF8B00C917DA /* MetaDealTool.m in Sources */,
 				18F860271C8EF2EF0066A72C /* NSObject+MJProperty.m in Sources */,
@@ -1075,6 +1085,7 @@
 				185DF5141C8FE61500F36D82 /* SDWebImageDownloaderOperation.m in Sources */,
 				187D191F1C86EBF100C917DA /* GetSingleDealResult.m in Sources */,
 				180C56CE1C8FA4800093E25F /* Foundation+Log.m in Sources */,
+				1818CA771C982A0000A11CEE /* DealViewCell.m in Sources */,
 				180C56E71C8FB3610093E25F /* DropDownMainCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1112,15 +1123,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		180161C51C8449820026C631 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				180161C61C8449820026C631 /* Base */,
-				18996B061C8BE3E800525925 /* zh-Hans */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		180161CA1C8449820026C631 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1240,6 +1242,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.neusoft.--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -1269,6 +1272,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.neusoft.--";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

@@ -25,7 +25,10 @@
 - (void)didMoveToSuperview
 {
     //填充整个父控件
-    [self autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    if (self.superview) {
+         [self autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    }
+   
 }
 
 @end

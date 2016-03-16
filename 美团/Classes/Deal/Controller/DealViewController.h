@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface DealViewController : UICollectionViewController
+#import "DealListViewController.h"
+@interface DealViewController : DealListViewController
 
 @end

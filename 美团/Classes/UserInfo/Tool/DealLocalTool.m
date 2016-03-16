@@ -33,7 +33,7 @@ SingletonM(DealLocalTool)
 - (void)saveDealHistory:(Deals *)deal
 {
     [self.dealHistory removeObject:deal];
-    [self.dealHistory addObject:deal];
+    [self.dealHistory insertObject:deal atIndex:0];
     
     [NSKeyedArchiver archiveRootObject:self.dealHistory toFile:dealHistoryFile];
 }

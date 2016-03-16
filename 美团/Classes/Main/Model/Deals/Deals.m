@@ -19,5 +19,12 @@
 {
     return @{@"desc" : @"description"};
 }
+
+- (BOOL)isEqual:(Deals *)other
+{
+    return [self.deal_id isEqualToString:other.deal_id];
+}
+
 MJCodingImplementation
+
 @end
