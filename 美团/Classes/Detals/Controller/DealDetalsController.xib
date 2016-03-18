@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DealDetalsController">
             <connections>
+                <outlet property="collectionBtn" destination="YP0-Q5-Uz4" id="lmj-is-KgU"/>
                 <outlet property="currentLabel" destination="uJx-LC-qoz" id="VJd-Rr-IfE"/>
                 <outlet property="descripLabel" destination="QIx-Sm-EBx" id="8Hw-2y-rsY"/>
                 <outlet property="iconView" destination="frk-XT-o60" id="XbQ-0f-4Ta"/>
@@ -125,6 +126,7 @@
                                     <state key="normal" image="icon_collect">
                                         <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="selected" image="icon_collect_highlighted"/>
                                     <state key="highlighted" image="icon_collect_highlighted"/>
                                     <connections>
                                         <action selector="buy" destination="-1" eventType="touchUpInside" id="bWa-e5-DmH"/>

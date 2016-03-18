@@ -8,7 +8,6 @@
 
 #import "DealHisttoryController.h"
 #import "DealLocalTool.h"
-#import "UIBarButtonItem+Extension.h"
 
 @interface DealHisttoryController ()
 
@@ -19,24 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     self.title = @"最近浏览";
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_back" highLightImage:@"icon_back_highlighted" target:self action:@selector(back)];
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.deals removeAllObjects];
+    
     NSArray *historyDeal = [DealLocalTool sharedDealLocalTool].dealHistory;
     [self.deals addObjectsFromArray:historyDeal];
     [self.collectionView reloadData];
     
 }
 
-- (void)back
+- (void)Delete
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[DealLocalTool sharedDealLocalTool]unSaveDealHistorys:self.willDeleteDeals];
 }
 
 - (NSString *)iconName

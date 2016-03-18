@@ -21,9 +21,14 @@
     
     UIBarButtonItem *Baritem = [UIBarButtonItem appearance];
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-    attrs[NSForegroundColorAttributeName] = [UIColor blackColor];
-    
+    attrs[NSForegroundColorAttributeName] = [UIColor colorWithRed:29/250.0 green:177/250.0 blue:157/250.0 alpha:1.0];
     [Baritem setTitleTextAttributes:attrs forState:UIControlStateNormal];
+    
+    //不可选状态
+    NSMutableDictionary *disableAttrs = [NSMutableDictionary dictionary];
+    disableAttrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+    
+    [Baritem setTitleTextAttributes:disableAttrs forState:UIControlStateDisabled];
     
 }
 

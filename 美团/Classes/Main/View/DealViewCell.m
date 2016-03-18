@@ -38,6 +38,16 @@
     NSString *today = [fmt stringFromDate:[NSDate date]];
     
     self.dealNewView.hidden =([deal.publish_date compare:today] == NSOrderedDescending);
+    
+    /** 设置编辑状态*/
+    if (deal.isEdting) {
+        self.cover.hidden = NO;
+    }else{
+        self.cover.hidden = YES;
+    }
+#warning 解决循环利用带来的重复显示
+    /** 设置勾选状态*/
+    self.clickImage.hidden = !self.deal.isChecking;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -45,4 +55,14 @@
     [[UIImage imageNamed:@"bg_dealcell"] drawInRect:rect];
 }
 
+- (IBAction)coverClick {
+    
+    self.deal.Checking = !self.deal.isChecking;
+    
+    self.clickImage.hidden = !self.clickImage.hidden;
+    
+    if ([self.delegete respondsToSelector:@selector(dealCellClickCover:)]) {
+        [self.delegete dealCellClickCover:self];
+    }
+}
 @end

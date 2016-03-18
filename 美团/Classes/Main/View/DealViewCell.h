@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Deals.h"
+@class DealViewCell;
+
+@protocol DealViewCellDelegete <NSObject>
+
+@optional
+- (void)dealCellClickCover:(DealViewCell *)dealCell;
+
+@end
 @interface DealViewCell : UICollectionViewCell
+
 /** 团购模型*/
 @property (nonatomic,strong)  Deals *deal;
 
@@ -30,5 +39,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *listPriceConstrain;
 /** 显示新单图片*/
 @property (weak, nonatomic) IBOutlet UIImageView *dealNewView;
+/** 打钩图片*/
+@property (weak, nonatomic) IBOutlet UIImageView *clickImage;
+/** 遮盖按钮*/
+@property (weak, nonatomic) IBOutlet UIButton *cover;
+
+@property (nonatomic,weak) id<DealViewCellDelegete> delegete;
+
+- (IBAction)coverClick;
 
 @end

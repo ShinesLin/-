@@ -14,7 +14,7 @@
 #import "NoDataView.h"
 #import <MJRefresh.h>
 
-@interface DealListViewController ()
+@interface DealListViewController ()<DealViewCellDelegete>
 
 @property (nonatomic,weak) NoDataView *dataView;
 @end
@@ -33,7 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NoDataView *)dataView
 {
     if (_dataView == nil) {
-        NoDataView *dataView = [[NoDataView alloc]init];
+        NoDataView *dataView = [NoDataView noDataView];
         dataView.image = [UIImage imageNamed: self.iconName];
         [self.view insertSubview:dataView belowSubview:self.collectionView];
         self.dataView = dataView;
@@ -51,18 +51,18 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Register cell classes
-//    [self.collectionView registerClass:[UICollectionView class] forCellWithReuseIdentifier:reuseIdentifier];
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
-     [self.collectionView registerNib:[UINib nibWithNibName:@"DealViewCell" bundle:nil] forCellWithReuseIdentifier:@"deal"];
-    // Do any additional setup after loading the view.
+    [self setupBaseView];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupBaseView
+{
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.alwaysBounceVertical = YES;
+    self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"DealViewCell" bundle:nil] forCellWithReuseIdentifier:@"deal"];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -114,6 +114,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     DealViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"deal" forIndexPath:indexPath];
+    cell.delegete = self;
     cell.deal = self.deals[indexPath.item];
     return cell;
 }
@@ -125,35 +126,4 @@ static NSString * const reuseIdentifier = @"Cell";
     vc.deal = self.deals[indexPath.item];
     [self presentViewController:vc animated:YES completion:nil ];
 }
-
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
 @end

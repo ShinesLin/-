@@ -18,5 +18,17 @@ SingletonH(DealLocalTool)
 @property (nonatomic,strong,readonly) NSMutableArray *dealHistory;
 /** 保存最近浏览的团购数据*/
 - (void)saveDealHistory:(Deals *)deal;
+- (void)unSaveDealHistory:(Deals *)deal;
+- (void)unSaveDealHistorys:(NSArray *)deal;
+
+/**返回最近收藏团购数据*/
+@property (nonatomic,strong,readonly)  NSMutableArray *dealCollect;
+
+/** 保存最近收藏团购数据*/
+- (void)saveDealCollect:(Deals *)deal;
+
+/** 取消收藏团购数据*/
+- (void)unSaveDealCollect:(Deals *)deal;
+- (void)unSaveDealCollects:(NSArray *)deal;
 
 @end

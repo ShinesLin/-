@@ -6,8 +6,8 @@
 //  Copyright © 2016年 neusoft. All rights reserved.
 //
 
-#import "DealListViewController.h"
+#import "DealLocalViewController.h"
 
-@interface DealCollectController : DealListViewController
+@interface DealCollectController : DealLocalViewController
 
 @end

@@ -12,10 +12,8 @@
 		180161D71C8449820026C631 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180161D61C8449820026C631 /* __Tests.m */; };
 		180161E21C8449820026C631 /* __UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180161E11C8449820026C631 /* __UITests.m */; };
 		180162181C844BDF0026C631 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1801620F1C844BDF0026C631 /* AppDelegate.m */; };
+		1808AAB41C9A466300444852 /* DealLocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808AAB31C9A466300444852 /* DealLocalViewController.m */; };
 		180C56CE1C8FA4800093E25F /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56CD1C8FA4800093E25F /* Foundation+Log.m */; };
-		180C56D51C8FA6150093E25F /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56D11C8FA6150093E25F /* MBProgressHUD+MJ.m */; };
-		180C56D61C8FA6150093E25F /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180C56D21C8FA6150093E25F /* MBProgressHUD.bundle */; };
-		180C56D71C8FA6150093E25F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56D41C8FA6150093E25F /* MBProgressHUD.m */; };
 		180C56E51C8FB3610093E25F /* DealDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56DB1C8FB3610093E25F /* DealDropDownMenu.m */; };
 		180C56E61C8FB3610093E25F /* DealDropDownMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180C56DC1C8FB3610093E25F /* DealDropDownMenu.xib */; };
 		180C56E71C8FB3610093E25F /* DropDownMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180C56DE1C8FB3610093E25F /* DropDownMainCell.m */; };
@@ -134,12 +132,9 @@
 		180161E31C8449820026C631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1801620E1C844BDF0026C631 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/Main/AppDelegate.h; sourceTree = "<group>"; };
 		1801620F1C844BDF0026C631 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/Main/AppDelegate.m; sourceTree = "<group>"; };
+		1808AAB21C9A466300444852 /* DealLocalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealLocalViewController.h; sourceTree = "<group>"; };
+		1808AAB31C9A466300444852 /* DealLocalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealLocalViewController.m; sourceTree = "<group>"; };
 		180C56CD1C8FA4800093E25F /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
-		180C56D01C8FA6150093E25F /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
-		180C56D11C8FA6150093E25F /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
-		180C56D21C8FA6150093E25F /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
-		180C56D31C8FA6150093E25F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		180C56D41C8FA6150093E25F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		180C56DA1C8FB3610093E25F /* DealDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDropDownMenu.h; sourceTree = "<group>"; };
 		180C56DB1C8FB3610093E25F /* DealDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDropDownMenu.m; sourceTree = "<group>"; };
 		180C56DC1C8FB3610093E25F /* DealDropDownMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDropDownMenu.xib; sourceTree = "<group>"; };
@@ -460,18 +455,6 @@
 			path = Cateogry;
 			sourceTree = "<group>";
 		};
-		180C56CF1C8FA6150093E25F /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				180C56D01C8FA6150093E25F /* MBProgressHUD+MJ.h */,
-				180C56D11C8FA6150093E25F /* MBProgressHUD+MJ.m */,
-				180C56D21C8FA6150093E25F /* MBProgressHUD.bundle */,
-				180C56D31C8FA6150093E25F /* MBProgressHUD.h */,
-				180C56D41C8FA6150093E25F /* MBProgressHUD.m */,
-			);
-			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
 		180C56D81C8FB3610093E25F /* DealCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +504,8 @@
 				180DE28D1C9819E900294E23 /* DealHisttoryController.m */,
 				18A26F811C98F0540067CCD7 /* DealCollectController.h */,
 				18A26F821C98F0540067CCD7 /* DealCollectController.m */,
+				1808AAB21C9A466300444852 /* DealLocalViewController.h */,
+				1808AAB31C9A466300444852 /* DealLocalViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -729,7 +714,6 @@
 			isa = PBXGroup;
 			children = (
 				185DF4EC1C8FE61500F36D82 /* SDWebImage */,
-				180C56CF1C8FA6150093E25F /* MBProgressHUD */,
 				18F85FF51C8EF2EF0066A72C /* AwesomeMenu */,
 				18F85FFA1C8EF2EF0066A72C /* MJExtension */,
 				18F860151C8EF2EF0066A72C /* dianpingapi */,
@@ -927,7 +911,6 @@
 				1818CA791C982A3000A11CEE /* DealViewCell.xib in Resources */,
 				1850E3261C880E6F00501996 /* DealSortController.xib in Resources */,
 				180161CC1C8449820026C631 /* LaunchScreen.storyboard in Resources */,
-				180C56D61C8FA6150093E25F /* MBProgressHUD.bundle in Resources */,
 				180C56EA1C8FB3610093E25F /* DealTopMenu.xib in Resources */,
 				1858E5A21C8C53A800FB98A9 /* CitiesController.xib in Resources */,
 				18E7CCDD1C93AFD800891746 /* DealDetalsController.xib in Resources */,
@@ -1030,7 +1013,6 @@
 				186306A41C85B02600C2FCB3 /* NavigationController.m in Sources */,
 				180C56E91C8FB3610093E25F /* DealTopMenu.m in Sources */,
 				18996B021C8BC22F00525925 /* CitiesController.m in Sources */,
-				180C56D51C8FA6150093E25F /* MBProgressHUD+MJ.m in Sources */,
 				18A26F831C98F0540067CCD7 /* DealCollectController.m in Sources */,
 				185DF50F1C8FE61500F36D82 /* NSData+ImageContentType.m in Sources */,
 				18AC5E1F1C845F3C00EF0E62 /* ApiTool.m in Sources */,
@@ -1040,7 +1022,6 @@
 				187D191B1C86EBF100C917DA /* Deals.m in Sources */,
 				1850E31A1C88019100501996 /* DealRegionController.m in Sources */,
 				18339D611C90FC83000F43FC /* ListPriceCenterLine.m in Sources */,
-				180C56D71C8FA6150093E25F /* MBProgressHUD.m in Sources */,
 				180C56E51C8FB3610093E25F /* DealDropDownMenu.m in Sources */,
 				18339D651C91074F000F43FC /* NoDataView.m in Sources */,
 				185DF5161C8FE61500F36D82 /* SDWebImagePrefetcher.m in Sources */,
@@ -1083,6 +1064,7 @@
 				185DF5131C8FE61500F36D82 /* SDWebImageDownloader.m in Sources */,
 				1850E3141C87FFC800501996 /* UIButton+Extension.m in Sources */,
 				185DF5141C8FE61500F36D82 /* SDWebImageDownloaderOperation.m in Sources */,
+				1808AAB41C9A466300444852 /* DealLocalViewController.m in Sources */,
 				187D191F1C86EBF100C917DA /* GetSingleDealResult.m in Sources */,
 				180C56CE1C8FA4800093E25F /* Foundation+Log.m in Sources */,
 				1818CA771C982A0000A11CEE /* DealViewCell.m in Sources */,

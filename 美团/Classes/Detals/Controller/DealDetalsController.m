@@ -9,20 +9,22 @@
 #import "DealDetalsController.h"
 #import "Deals.h"
 #import "DealsTool.h"
-#import "MBProgressHUD+MJ.h"
 #import "UIView+AutoLayout.h"
 #import "ListPriceCenterLine.h"
 #import "Restrictions.h"
 #import "UIButton+Extension.h"
 #import "UIImageView+WebCache.h"
 #import "DealLocalTool.h"
-
+#import "DealCollectController.h"
+#import <SVProgressHUD.h>
 
 #define UMAppKey @"53fb4899fd98c5a4db00a8a0"
 @interface DealDetalsController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 /** 显示网页加载圈圈*/
 //@property (nonatomic,weak) UIActivityIndicatorView *loadView;
+
+@property (weak, nonatomic) IBOutlet UIButton *collectionBtn;
 @end
 
 @implementation DealDetalsController
@@ -32,19 +34,24 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.webView.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
+    //保存浏览数据到沙盒中
+    [[DealLocalTool sharedDealLocalTool]saveDealHistory:self.deal];
+    //判断是否收藏
+    NSArray *collectDeal = [DealLocalTool sharedDealLocalTool].dealCollect;
+    self.collectionBtn.selected = [collectDeal containsObject:self.deal];
+    
     //显示左边内容
     [self setupLeftContent];
     //显示右边内容
     [self setupRightContent];
-    //保存浏览数据到沙盒中
-    [[DealLocalTool sharedDealLocalTool]saveDealHistory:self.deal];
+    
 }
 
 //规定显示横屏
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscape;
-}
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationMaskLandscape;
+//}
 
 #pragma mark - 处理左边内容
 - (void)setupLeftContent
@@ -58,10 +65,10 @@
             self.deal = [result.deals lastObject];
             [self updateLeftContent];
         }else{
-            [MBProgressHUD showError:@"没有指定团购"];
+            [SVProgressHUD showErrorWithStatus:@"没有指定团购" maskType:SVProgressHUDMaskTypeBlack];
         }
     } failure:^(NSError *error) {
-        [MBProgressHUD showError:@"加载团购失败"];
+        [SVProgressHUD showErrorWithStatus:@"加载团购失败" maskType:SVProgressHUDMaskTypeBlack];
     }];
 }
 
@@ -146,7 +153,18 @@
 - (IBAction)buy {
 }
 
+//收藏
 - (IBAction)collect {
+    if (self.collectionBtn.selected) {
+        [[DealLocalTool sharedDealLocalTool] unSaveDealCollect:self.deal];
+        [SVProgressHUD showSuccessWithStatus:@"取消收藏" maskType: SVProgressHUDMaskTypeBlack];
+        
+        self.collectionBtn.selected = NO;
+    }else{
+        [[DealLocalTool sharedDealLocalTool] saveDealCollect:self.deal];
+        [SVProgressHUD showSuccessWithStatus:@"收藏成功" maskType: SVProgressHUDMaskTypeBlack];
+        self.collectionBtn.selected = YES;
+    }
 }
 
 - (IBAction)share {

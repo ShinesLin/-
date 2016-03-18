@@ -97,6 +97,20 @@
                             <constraint firstAttribute="width" constant="38" id="RxS-Er-zVG"/>
                         </constraints>
                     </imageView>
+                    <button hidden="YES" opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVF-uJ-lXM" userLabel="遮盖">
+                        <rect key="frame" x="0.0" y="0.0" width="305" height="305"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="coverClick" destination="mcu-CJ-bJ4" eventType="touchUpInside" id="7Jo-vi-pCi"/>
+                        </connections>
+                    </button>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_choosed_large" translatesAutoresizingMaskIntoConstraints="NO" id="9db-g4-FIF" userLabel="打钩">
+                        <rect key="frame" x="269" y="275" width="36" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="N1s-ff-bfB"/>
+                            <constraint firstAttribute="height" constant="30" id="fRZ-7r-8Eb"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -104,17 +118,25 @@
             <constraints>
                 <constraint firstAttribute="bottomMargin" secondItem="zOI-T6-jEk" secondAttribute="bottom" constant="22" id="8jc-Qj-t2Q"/>
                 <constraint firstItem="hkf-Ys-NN8" firstAttribute="top" secondItem="mcu-CJ-bJ4" secondAttribute="topMargin" id="Asy-v5-1sT"/>
+                <constraint firstAttribute="bottom" secondItem="9db-g4-FIF" secondAttribute="bottom" id="CFG-i0-X0B"/>
                 <constraint firstItem="1Nd-WR-oj9" firstAttribute="top" secondItem="hkf-Ys-NN8" secondAttribute="bottom" constant="8" id="IfS-P3-A4f"/>
+                <constraint firstItem="DVF-uJ-lXM" firstAttribute="top" secondItem="mcu-CJ-bJ4" secondAttribute="top" id="J0j-Az-qEl"/>
                 <constraint firstAttribute="trailingMargin" secondItem="hkf-Ys-NN8" secondAttribute="trailing" id="LE2-wt-iVc"/>
                 <constraint firstItem="402-2U-3wl" firstAttribute="top" secondItem="mcu-CJ-bJ4" secondAttribute="topMargin" id="NMt-9j-gvr"/>
                 <constraint firstItem="1Nd-WR-oj9" firstAttribute="bottom" secondItem="mcu-CJ-bJ4" secondAttribute="bottomMargin" id="WSf-ez-Xwz"/>
                 <constraint firstItem="1Nd-WR-oj9" firstAttribute="trailing" secondItem="mcu-CJ-bJ4" secondAttribute="trailingMargin" id="iha-yl-zhU"/>
                 <constraint firstItem="402-2U-3wl" firstAttribute="leading" secondItem="mcu-CJ-bJ4" secondAttribute="leadingMargin" id="j4A-Qs-1X9"/>
                 <constraint firstItem="hkf-Ys-NN8" firstAttribute="leading" secondItem="mcu-CJ-bJ4" secondAttribute="leadingMargin" id="jMe-rA-kXp"/>
+                <constraint firstItem="DVF-uJ-lXM" firstAttribute="leading" secondItem="mcu-CJ-bJ4" secondAttribute="leading" id="kil-kx-43j"/>
+                <constraint firstAttribute="bottom" secondItem="DVF-uJ-lXM" secondAttribute="bottom" id="kmm-Ea-JB8"/>
+                <constraint firstAttribute="trailing" secondItem="9db-g4-FIF" secondAttribute="trailing" id="olq-v1-1hU"/>
+                <constraint firstAttribute="trailing" secondItem="DVF-uJ-lXM" secondAttribute="trailing" id="we7-SY-wcI"/>
                 <constraint firstItem="1Nd-WR-oj9" firstAttribute="leading" secondItem="mcu-CJ-bJ4" secondAttribute="leadingMargin" id="zTd-2l-ojT"/>
             </constraints>
             <size key="customSize" width="305" height="305"/>
             <connections>
+                <outlet property="clickImage" destination="9db-g4-FIF" id="cYI-2Q-Fiv"/>
+                <outlet property="cover" destination="DVF-uJ-lXM" id="gCL-h1-qmh"/>
                 <outlet property="currentPriceConstrain" destination="59x-ed-gmd" id="Bkk-ky-lCb"/>
                 <outlet property="currentPriceLabel" destination="scF-pi-yUx" id="AnI-N2-v9f"/>
                 <outlet property="dealNewView" destination="hkf-Ys-NN8" id="Fe6-xf-drf"/>
@@ -125,10 +147,11 @@
                 <outlet property="purseCountLabel" destination="o4R-ak-cU4" id="zwv-lO-vXC"/>
                 <outlet property="titleLabel" destination="47y-wd-1X2" id="nos-vp-1iO"/>
             </connections>
-            <point key="canvasLocation" x="359.5" y="303.5"/>
+            <point key="canvasLocation" x="795.5" y="229.5"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="ic_choosed_large" width="72" height="60"/>
         <image name="ic_deal_new" width="38" height="24"/>
         <image name="placeholder_deal" width="273" height="172"/>
     </resources>

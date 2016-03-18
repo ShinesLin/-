@@ -22,7 +22,7 @@
 #import "Region.h"
 #import "DealsTool.h"
 #import "MJExtension.h"
-#import "MBProgressHUD+MJ.h"
+#import <SVProgressHUD.h>
 #import "AwesomeMenu.h"
 #import <MJRefresh.h>
 #import "MetaDealTool.h"
@@ -232,8 +232,7 @@ static NSString * const reuseIdentifier = @"Cell";
     } failure:^(NSError *error) {
         //如果请求过期，直接返回
         if(params != self.lastparams) return;
-
-        [MBProgressHUD showError:@"加载团购失败,请稍后再试"];
+        [SVProgressHUD showErrorWithStatus:@"加载团购失败,请稍后再试" maskType:SVProgressHUDMaskTypeBlack];
         [self.collectionView.mj_header endRefreshing];
     }];
     //保存参数

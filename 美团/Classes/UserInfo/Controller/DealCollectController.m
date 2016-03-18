@@ -7,7 +7,8 @@
 //
 
 #import "DealCollectController.h"
-#import "UIBarButtonItem+Extension.h"
+#import "DealLocalTool.h"
+#import "Deals.h"
 
 @interface DealCollectController ()
 
@@ -18,13 +19,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的收藏";
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_back" highLightImage:@"icon_back_highlighted" target:self action:@selector(back)];
 }
 
-- (void)back
+- (void)viewWillAppear:(BOOL)animated
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [super viewWillAppear:animated];
+    [self.deals removeAllObjects];
+    
+    NSArray *dealCollect = [DealLocalTool sharedDealLocalTool].dealCollect;
+    [self.deals addObjectsFromArray:dealCollect];
+    [self.collectionView reloadData];
 }
+
+- (void)Delete
+{
+    [[DealLocalTool sharedDealLocalTool]unSaveDealCollects:self.willDeleteDeals];
+}
+
 
 - (NSString *)iconName
 {

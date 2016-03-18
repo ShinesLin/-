@@ -60,5 +60,9 @@
 @property (copy, nonatomic) NSString *notice;
 /** 限制条件*/
 @property (nonatomic,strong)  Restrictions *restrction;
+/** 是否处于编辑状态*/
+@property (nonatomic,assign,getter=isEdting) BOOL Edting;
+/** 处于正在编辑状态*/
+@property (nonatomic,assign,getter=isChecking) BOOL Checking;
 
 @end

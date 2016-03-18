@@ -6,6 +6,7 @@ inhibit_all_warnings!
 
 target '美团' do
 pod 'MJRefresh', '~> 3.0.7'
+pod 'SVProgressHUD'
 end
 
 target '美团Tests' do

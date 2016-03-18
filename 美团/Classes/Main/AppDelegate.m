@@ -10,6 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "NavigationController.h"
 #import "DealViewController.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -18,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     DealViewController *dealsVc = [[DealViewController alloc] init];
     
